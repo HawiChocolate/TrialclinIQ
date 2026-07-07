@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import {
   Activity,
   CalendarCheck,
@@ -36,12 +35,9 @@ export default function Landing() {
       <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
         <div className={`flex items-center justify-between py-4 ${CONTAINER}`}>
           <a href="#home" className="flex items-center">
-            <Image
+            <img
               src="/trialcliniq-logo.png"
               alt="TrialCliniq"
-              width={118}
-              height={42}
-              priority
               className="h-9 w-auto"
             />
           </a>
@@ -58,20 +54,18 @@ export default function Landing() {
               disabled
               aria-disabled="true"
               title="Patient portal coming soon"
-              className="hidden cursor-not-allowed items-center gap-2 text-sm font-medium text-foreground/80 opacity-60 sm:inline-flex"
+              className="hidden cursor-not-allowed text-sm font-medium text-foreground/80 opacity-60 sm:inline-block"
             >
               Login
-              
             </button>
             <button
               type="button"
               disabled
               aria-disabled="true"
               title="Patient portal coming soon"
-              className="inline-flex cursor-not-allowed items-center gap-2 rounded-full bg-navy px-5 py-2.5 text-sm font-medium text-navy-foreground"
+              className="inline-flex cursor-not-allowed items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground"
             >
               Get Started
-              
             </button>
           </div>
         </div>
@@ -101,10 +95,9 @@ export default function Landing() {
                 disabled
                 aria-disabled="true"
                 title="Patient portal coming soon"
-                className="inline-flex cursor-not-allowed items-center gap-2 rounded-full bg-navy px-6 py-3 text-sm font-medium text-navy-foreground shadow-lg shadow-navy/20"
+                className="inline-flex cursor-not-allowed items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/20"
               >
                 Enter my portal <ArrowRight className="h-4 w-4" />
-                
               </button>
               <a
                 href="#features"
@@ -126,7 +119,13 @@ export default function Landing() {
           </div>
 
           <div className="lg:col-span-5">
-            <HeroMock />
+            <div className="overflow-hidden rounded-3xl border border-border shadow-card">
+              <img
+                src="/doc-hero.jpg"
+                alt="Doctor reviewing a patient's care on TrialCliniq"
+                className="aspect-[4/5] w-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -144,31 +143,39 @@ export default function Landing() {
           </p>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-6">
-          <FeatureCard
-            className="md:col-span-4 bg-mint text-mint-foreground"
-            icon={<Activity className="h-5 w-5" />}
-            title="Vitals at a glance"
-            body="Weight, pulse, blood pressure and more — visualized as calming, easy-to-read charts you actually enjoy checking."
-          />
-          <FeatureCard
-            className="md:col-span-2 bg-blush text-blush-foreground"
-            icon={<Pill className="h-5 w-5" />}
-            title="Never miss a dose"
-            body="Refill reminders and one-tap orders."
-          />
-          <FeatureCard
-            className="md:col-span-2 bg-butter text-butter-foreground"
-            icon={<CalendarDays className="h-5 w-5" />}
-            title="Book in seconds"
-            body="Real-time availability across your care team."
-          />
-          <FeatureCard
-            className="md:col-span-4 bg-sky text-sky-foreground"
-            icon={<Stethoscope className="h-5 w-5" />}
-            title="Your care team, on speed-dial"
-            body="Message a nurse, share a symptom photo, or start a video visit — all from the same warm inbox."
-          />
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-start">
+          <div className="lg:col-span-7">
+            <div className="grid gap-4 md:grid-cols-6">
+              <FeatureCard
+                className="md:col-span-4 bg-mint text-mint-foreground"
+                icon={<Activity className="h-5 w-5" />}
+                title="Vitals at a glance"
+                body="Weight, pulse, blood pressure and more — visualized as calming, easy-to-read charts you actually enjoy checking."
+              />
+              <FeatureCard
+                className="md:col-span-2 bg-blush text-blush-foreground"
+                icon={<Pill className="h-5 w-5" />}
+                title="Never miss a dose"
+                body="Refill reminders and one-tap orders."
+              />
+              <FeatureCard
+                className="md:col-span-2 bg-butter text-butter-foreground"
+                icon={<CalendarDays className="h-5 w-5" />}
+                title="Book in seconds"
+                body="Real-time availability across your care team."
+              />
+              <FeatureCard
+                className="md:col-span-4 bg-sky text-sky-foreground"
+                icon={<Stethoscope className="h-5 w-5" />}
+                title="Your care team, on speed-dial"
+                body="Message a nurse, share a symptom photo, or start a video visit — all from the same warm inbox."
+              />
+            </div>
+          </div>
+
+          <div className="lg:col-span-5">
+            <HeroMock />
+          </div>
         </div>
       </section>
 
@@ -190,12 +197,9 @@ export default function Landing() {
                 disabled
                 aria-disabled="true"
                 title="Patient portal coming soon"
-                className="mt-6 inline-flex cursor-not-allowed items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground"
+                className="mt-6 inline-flex cursor-not-allowed items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground opacity-50"
               >
                 Open the portal <ArrowRight className="h-4 w-4" />
-                <span className="rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide">
-                  Soon
-                </span>
               </button>
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -217,18 +221,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Stats — animated counters, shown right before the FAQ.
-          Framed as forward-looking goals, since the CTAs above are
-          pre-launch — showing these as live traction would be misleading. */}
-      <section className={`pb-6 text-center ${CONTAINER}`}>
-        <p className="text-sm font-medium uppercase tracking-wide text-primary">
-          Where we&apos;re headed
-        </p>
-        <p className="mx-auto mt-2 max-w-lg text-sm text-muted-foreground">
-          TrialCliniq is in pre-launch. These are the goals we&apos;re
-          building toward in year one — not current numbers.
-        </p>
-      </section>
+      {/* Stats — animated counters, shown right before the FAQ */}
       <Stats />
 
       {/* FAQ */}
@@ -251,8 +244,8 @@ export default function Landing() {
             Ready to feel calmer about your care?
           </h2>
           <p className="mt-4 max-w-lg text-primary-foreground/70">
-            Join the early access list to be among the first to feel calmer,
-            more informed, and in control of your care.
+            Join tens of thousands of patients who use TrialCliniq to feel
+            calmer, more informed, and in control.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <button
@@ -263,9 +256,6 @@ export default function Landing() {
               className="inline-flex cursor-not-allowed items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-primary opacity-90"
             >
               Get Started <ArrowRight className="h-4 w-4" />
-              <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide">
-                Soon
-              </span>
             </button>
             <a
               href="#contact"
@@ -282,11 +272,9 @@ export default function Landing() {
       <footer id="contact" className="border-t border-border">
         <div className={`grid gap-10 py-16 md:grid-cols-4 ${CONTAINER}`}>
           <div>
-            <Image
+            <img
               src="/trialcliniq-logo.png"
               alt="TrialCliniq"
-              width={118}
-              height={42}
               className="h-8 w-auto"
             />
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">

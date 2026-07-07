@@ -9,7 +9,6 @@ import {
   HeartPulse,
   Instagram,
   Linkedin,
-  Mail,
   Pill,
   Shield,
   ShieldCheck,
@@ -19,7 +18,8 @@ import {
   Check,
   Twitter,
 } from "lucide-react";
-import { Stats } from "@/components/stats";
+import { Stats } from "../components/stats";
+import { DashboardPreview } from "../components/dashboard-preview";
 
 export const metadata: Metadata = {
   title: "TrialCliniq — A patient portal that finally feels human",
@@ -198,12 +198,7 @@ export default function Landing() {
                 </span>
               </button>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <MiniStat label="Appointments" value="63" tone="mint" />
-              <MiniStat label="Pulse" value="96 bpm" tone="blush" />
-              <MiniStat label="Weight" value="72 kg" tone="butter" />
-              <MiniStat label="Adherence" value="98%" tone="sky" />
-            </div>
+            <DashboardPreview />
           </div>
         </div>
       </section>
@@ -241,40 +236,6 @@ export default function Landing() {
           {faqs.map((item) => (
             <FaqItem key={item.q} question={item.q} answer={item.a} />
           ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className={`pb-16 ${CONTAINER}`}>
-        <div className="overflow-hidden rounded-[2.5rem] bg-primary px-8 py-14 text-primary-foreground md:px-16">
-          <h2 className="max-w-xl text-4xl text-primary-foreground md:text-5xl">
-            Ready to feel calmer about your care?
-          </h2>
-          <p className="mt-4 max-w-lg text-primary-foreground/70">
-            Join the early access list to be among the first to feel calmer,
-            more informed, and in control of your care.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <button
-              type="button"
-              disabled
-              aria-disabled="true"
-              title="Patient portal coming soon"
-              className="inline-flex cursor-not-allowed items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-primary opacity-90"
-            >
-              Get Started <ArrowRight className="h-4 w-4" />
-              <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide">
-                Soon
-              </span>
-            </button>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-white/10"
-            >
-              <Mail className="h-4 w-4" />
-              Contact Us
-            </a>
-          </div>
         </div>
       </section>
 
@@ -506,29 +467,6 @@ function FeatureCard({
       </div>
       <h3 className="mt-6 text-2xl md:text-3xl">{title}</h3>
       <p className="mt-2 text-sm opacity-80">{body}</p>
-    </div>
-  );
-}
-
-function MiniStat({
-  label,
-  value,
-  tone,
-}: {
-  label: string;
-  value: string;
-  tone: "mint" | "blush" | "butter" | "sky";
-}) {
-  const toneMap = {
-    mint: "bg-mint text-mint-foreground",
-    blush: "bg-blush text-blush-foreground",
-    butter: "bg-butter text-butter-foreground",
-    sky: "bg-sky text-sky-foreground",
-  };
-  return (
-    <div className={`rounded-2xl p-5 ${toneMap[tone]}`}>
-      <div className="text-xs opacity-70">{label}</div>
-      <div className="mt-2 text-3xl font-semibold">{value}</div>
     </div>
   );
 }

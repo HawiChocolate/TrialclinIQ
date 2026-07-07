@@ -4,8 +4,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-sans: var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -55,21 +55,24 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.17 0.03 180);
 
-  /* Brand primary is now the TrialCliniq navy */
-  --primary: #0d2847;
-  --primary-foreground: #f3f7fb;
+  /* Brand primary is the TrialCliniq navy, expressed in oklch to match
+     every other token in this file (keeps color-mix()/opacity modifiers
+     and any future palette tweaks consistent). oklch(0.27 0.07 254) is a
+     perceptually-indistinguishable match for #0d2847 (ΔE ≈ 0.7). */
+  --primary: oklch(0.27 0.07 254);
+  --primary-foreground: oklch(0.97 0.01 248);
 
   --secondary: oklch(0.95 0.015 235);
   --secondary-foreground: oklch(0.25 0.05 235);
   --muted: oklch(0.96 0.008 95);
   --muted-foreground: oklch(0.48 0.02 180);
   --accent: oklch(0.9 0.04 235);
-  --accent-foreground: #0d2847;
+  --accent-foreground: oklch(0.27 0.07 254);
   --destructive: oklch(0.62 0.22 25);
   --destructive-foreground: oklch(0.99 0.01 25);
   --border: oklch(0.9 0.012 235);
   --input: oklch(0.93 0.012 235);
-  --ring: #0d2847;
+  --ring: oklch(0.27 0.07 254);
 
   --mint: oklch(0.92 0.06 165);
   --mint-foreground: oklch(0.28 0.08 175);
@@ -82,9 +85,13 @@
   --ink: oklch(0.17 0.03 180);
   --ink-foreground: oklch(0.98 0.01 180);
 
-  /* Kept as a direct alias for the same navy brand color */
-  --navy: #0d2847;
-  --navy-foreground: #f3f7fb;
+  /* Fixed brand navy — deliberately NOT theme-dependent. --primary can
+     legitimately shift in dark mode (see below), but a handful of CTAs
+     (nav "Get Started", hero "Enter my portal") should always render
+     as true brand navy regardless of theme, so they reference this
+     instead of --primary. */
+  --navy: oklch(0.27 0.07 254);
+  --navy-foreground: oklch(0.97 0.01 248);
 }
 
 .dark {
@@ -130,7 +137,7 @@
 
 @layer utilities {
   .gradient-primary {
-    background-image: linear-gradient(135deg, var(--primary) 0%, #061627 100%);
+    background-image: linear-gradient(135deg, var(--primary) 0%, oklch(0.2 0.04 251) 100%);
   }
 
   .shadow-card {
@@ -141,8 +148,8 @@
 
   .shadow-glow {
     box-shadow:
-      0 30px 70px -20px rgba(13, 40, 71, 0.45),
-      0 10px 30px -12px rgba(13, 40, 71, 0.35);
+      0 30px 70px -20px oklch(0.27 0.07 254 / 0.45),
+      0 10px 30px -12px oklch(0.27 0.07 254 / 0.35);
   }
 }
 

@@ -356,7 +356,7 @@ export default function Landing() {
           </div>
           <div className="overflow-hidden rounded-3xl border border-border shadow-card group">
             <Image
-              src="/operating-room.jpg"
+              src="/about-referrals.jpg"
               alt="Neurosurgery operating room telemetry"
               width={800}
               height={800}
